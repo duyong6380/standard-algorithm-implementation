@@ -40,13 +40,30 @@ int merge_sort(int src[],int low,int high)
 	
 	return 0;
 }
-
+int insert_sort(int src[] , int len)
+{
+	int i = 0 , j =0;
+	for (i=1;i<len;++i)
+	{
+		int tmp = src[i];
+		for(j=i;j>0;--j)
+		{
+				if (src[j-1] > tmp)
+					src[j] = src[j-1];
+				else
+					break;
+		}
+		src[j] = tmp;
+	}
+	return 0;
+}
 int main()
 {
 	int src[] = {-1,0,-3,4,8,2,9,1,5};
 	int i;
 	#define  MAX_NUM  8
-	merge_sort(src,0,MAX_NUM);
+//	merge_sort(src,0,MAX_NUM);
+	insert_sort(src,MAX_NUM + 1);
 	for (i = 0;i<=MAX_NUM;++i)
 		printf("src[%d]=%d\n",i , src[i]);
 	return 0;
