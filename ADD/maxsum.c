@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 int BMS(int a[] , int len , int *index)
 {
 	if (len <= 0)
@@ -70,11 +70,43 @@ int dMS(int src[] ,int low,int high)
 	return 0;
 }
 
+/*
+* brief:使用动态规划法获取最大子段和
+* 时间复杂度只有O(n),有点吓人
+*/
+
+int dpMS(int src[],int len)
+{
+	int sum = 0,i = 0;
+	int *b = (int *)malloc(len * sizeof(int));
+	if(!b)
+	{
+		printf("tmp array malloc failed\n");
+		return 0;
+	}
+	b[0] = src[0];
+	for(i = 1;i < len;++i)
+	{
+		if(b[i-1] > 0)
+		{
+			b[i] = b[i-1] + src[i];
+		}
+		else
+			b[i] = src[i];
+	}
+	for(i = 0;i < len;++i)
+	{
+		if(b[i] > sum)
+			sum = b[i];
+	}
+	free(b);
+	return sum;
+}
 int main()
 {
 	int src[] = {-20,12,-5,11,-4,13,-5,-2};
 	int index = 0;
-	int maxsum = dMS(src,0,8);
+	int maxsum = dpMS(src,8);
 	printf("maxsum=%d,index=%d\n",maxsum,index);
 	return 0;
 }
