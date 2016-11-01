@@ -57,6 +57,11 @@ int insert_sort(int src[] , int len)
 	}
 	return 0;
 }
+
+int quick_sort(int src[],int len)
+{
+	
+}
 int main()
 {
 	int src[] = {-1,0,-3,4,8,2,9,1,5};
