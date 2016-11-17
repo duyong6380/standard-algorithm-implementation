@@ -80,7 +80,11 @@ int main(int argc,char *argv[])
 		printf("param is error\n");
 		return 0;
 	}
-	int match_func_num = atoll(argv[1]);
+	int match_func_num = 0;
+	printf("\t0:基础的模式匹配\n\
+			\t1:KMP匹配算法\n\
+			\tPlease enter the num:");
+	scanf("%d",&match_func_num);
 	char *src = "ababcabcacbab";
 	char *dst = "abcab";
 	int rtn = 0;
